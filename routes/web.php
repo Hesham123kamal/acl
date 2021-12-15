@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-
+use App\Http\Controllers\WelcomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,10 +14,8 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes(['register' => TRUE]); // For test only
+
+Route::get('/',[WelcomeController::class,'index'])->name('welcome');
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');

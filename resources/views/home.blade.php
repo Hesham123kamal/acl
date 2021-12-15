@@ -14,7 +14,10 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                        <p> {{ __('You are logged in!') }} </p>
+
+                        <a style = "color:#FFF" href="{{ route('admin.home') }}" class="btn btn-info">Admin Dashboard</a>
+
                 </div>
             </div>
         </div>

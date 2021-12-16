@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\DB;
 
 class ProfileAttributeController extends Controller {
 
+    public function __construct() {
+        $this->middleware('permission:read_settings')->only(['index']);
+        $this->middleware('permission:update_settings')->only(['edit_profile_attributes_settings', 'storeNewProfileAttributes']);
+    }
+
     public function index() {
 
         $profile_attributes = ProfileAttribute::get();

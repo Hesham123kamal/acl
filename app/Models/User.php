@@ -25,7 +25,9 @@ class User extends Authenticatable
         'email',
         'password',
         'type',
-        'image'
+        'image',
+        'gender',
+        'profile_percentage'
         ];
 
     protected $appends = ['image_path'];

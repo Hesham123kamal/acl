@@ -40,6 +40,8 @@
     {{--<script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>--}}
     <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+
     <link rel="stylesheet" href="{{ asset('admin_assets/css/custom.css')}}">
 
     <style>
@@ -93,6 +95,8 @@
 @include('layouts.admin._aside')
 
 <main class="app-content">
+
+    @include('admin.partials._errors')
 
     @include('admin.partials._session')
 

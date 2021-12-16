@@ -18,6 +18,8 @@ class UsersTableSeeder extends Seeder
             'name' => 'Hesham Kamal',
             'email' => 'super_admin@app.com',
             'password' => bcrypt('super_admin_pass'),
+            'gender' => 'male',
+            'profile_percentage' => '70',
             'type' => 'super_admin',
         ]);
 

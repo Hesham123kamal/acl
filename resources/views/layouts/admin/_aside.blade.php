@@ -36,6 +36,16 @@
             </li>
         @endif
 
+        @if (auth()->user()->hasPermission('read_settings'))
+            <li>
+                <a class="app-menu__item {{ request()->is('*settings*') ? 'active' : '' }}" href="{{ route('admin.settings.display') }}">
+                    <i class="app-menu__icon fa fa-lock"></i>
+                    <span class="app-menu__label">
+                        @lang('settings.settings')
+                    </span>
+                </a>
+            </li>
+        @endif
 
     </ul>
     <!-- End App Modules -->

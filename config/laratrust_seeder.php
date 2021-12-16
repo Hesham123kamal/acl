@@ -14,21 +14,18 @@ return [
     'roles_structure' => [
         'super_admin' => [
             'roles' => 'c,r,u,d',
-            'admins' => 'c,r,u,d',
             'users' => 'c,r,u,d',
-            'products' => 'c,r,u,d',
+            'settings' => 'c,r,u,d',
         ],
         'admin' => [
             'roles' => 'c,r,u',
-            'admins' => 'c,r,',
             'users' => 'c,r,u,d',
-            'products' => 'c,r,u',
+            'settings' => 'c,r,u',
         ],
         'user' => [
             'roles' => 'r',
-            'admins' => 'r',
             'users' => 'r',
-            'products' => 'r',
+            'settings' => 'r',
         ],
     ],
 

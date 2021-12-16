@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\ProfileAttribute;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -52,6 +53,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+          //  'gender' => ['required'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -64,10 +66,41 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        $profilePercentage = 0;
+
+        $get_username_percentage_value = ProfileAttribute::where("attribute_name",'username')->first();
+        $username_percentage_value = $get_username_percentage_value->percentage_value;
+
+        $get_email_percentage_value = ProfileAttribute::where("attribute_name",'email')->first();
+        $email_percentage_value = $get_email_percentage_value->percentage_value;
+
+        $get_gender_percentage_value = ProfileAttribute::where("attribute_name",'gender')->first();
+        $gender_percentage_value = $get_gender_percentage_value->percentage_value;
+
+        if(isset($data['name']) && !empty($data['name'])) {
+            $profilePercentage += $username_percentage_value;
+        }
+
+        if(isset($data['email']) && !empty($data['email'])) {
+            $profilePercentage += $email_percentage_value;
+        }
+
+        if(isset($data['gender']) && !empty($data['gender'])) {
+            $profilePercentage += $gender_percentage_value;
+        }
+
+        $user = User::create(
+            [
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'gender' => $data['gender'],
+                'profile_percentage' => (string)$profilePercentage,
+                'password' => Hash::make($data['password']),
+            ]
+        );
+
+        $user->attachRole('admin');
+
+        return $user;
     }
 }

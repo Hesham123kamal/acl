@@ -16,6 +16,9 @@
 
                         <p> {{ __('You are logged in!') }} </p>
 
+                        <p class="app-sidebar__user-designation">Your Profile Percentage Is : {{ auth()->user()->profile_percentage . ' %' }}</p>
+
+
                         <a style = "color:#FFF" href="{{ route('admin.home') }}" class="btn btn-info">Admin Dashboard</a>
 
                 </div>

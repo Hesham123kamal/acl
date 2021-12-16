@@ -99,7 +99,7 @@ class RegisterController extends Controller
             ]
         );
 
-        $user->attachRole('admin');
+        $user->attachRole('user');
 
         return $user;
     }
